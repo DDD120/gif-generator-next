@@ -13,10 +13,3 @@
 * {
   font-family: 'GmarketSansMedium';
 }
-
-*,
-html,
-body,
-body > div {
-  height: 100%;
-}
