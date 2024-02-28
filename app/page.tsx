@@ -1,7 +1,17 @@
-export default function Home() {
+import Stepper from '@/components/common/Stepper'
+
+interface Props {
+  searchParams: {
+    step: string
+  }
+}
+
+export default function Home({ searchParams }: Props) {
+  const step = searchParams.step ? Number(searchParams.step) : 1
+
   return (
-    <main className='flex h-full flex-col items-center justify-between p-24'>
-      GIF Generator
-    </main>
+    <div>
+      <Stepper step={step} />
+    </div>
   )
 }
