@@ -1,4 +1,5 @@
 import Stepper from '@/components/common/Stepper'
+import Step1 from '@/components/step1'
 
 interface Props {
   searchParams: {
@@ -12,6 +13,7 @@ export default function Home({ searchParams }: Props) {
   return (
     <div>
       <Stepper step={step} />
+      <Step1 />
     </div>
   )
 }
