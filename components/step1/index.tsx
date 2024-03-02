@@ -1,14 +1,9 @@
+import { createScreenshots } from '@/app/actions'
 import { Button, Input } from '@nextui-org/react'
 
 export default function Step1() {
-  async function action(formData: FormData) {
-    'use server'
-
-    console.log(formData.get('requestUrl'))
-  }
-
   return (
-    <form action={action} className='flex flex-col gap-6'>
+    <form action={createScreenshots} className='flex flex-col gap-6'>
       <Input name='requestUrl' type='text' label='영상 링크' isRequired />
       <div className='grid gap-6 mb-6 md:grid-cols-2'>
         <Input
