@@ -2,10 +2,11 @@
 
 import fs from 'fs'
 import { nanoid } from 'nanoid'
+import ffmpeg from 'fluent-ffmpeg'
 
 export async function createScreenshots(formData: FormData) {
-  const requestUrl = formData.get('requestUrl')
-  const startTime = formData.get('startTime')
+  const requestUrl = formData.get('requestUrl') as string
+  const startTime = formData.get('startTime') as string
 
   const id = nanoid()
   const dir = `screenshots/${id}`
@@ -14,5 +15,15 @@ export async function createScreenshots(formData: FormData) {
     fs.mkdirSync(dir, { recursive: true })
   }
 
-  console.log(requestUrl, startTime, id)
+  ffmpeg(requestUrl)
+    .screenshots({
+      timestamps: [startTime],
+      folder: dir,
+    })
+    .on('end', () => {
+      console.log('end')
+    })
+    .on('error', (err) => {
+      console.log('error', err)
+    })
 }
