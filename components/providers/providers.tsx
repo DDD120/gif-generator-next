@@ -3,6 +3,7 @@
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { RecoilRoot } from 'recoil'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [isMount, setMount] = useState(false)
@@ -18,7 +19,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <NextUIProvider>
       <NextThemesProvider attribute='class' defaultTheme='dark'>
-        {children}
+        <RecoilRoot>
+          {children}
+        </RecoilRoot>
       </NextThemesProvider>
     </NextUIProvider>
   )

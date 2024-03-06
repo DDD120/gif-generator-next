@@ -1,14 +1,19 @@
 'use server'
 
 import fs from 'fs'
-import { nanoid } from 'nanoid'
 import ffmpeg from 'fluent-ffmpeg'
 
-export async function createScreenshots(formData: FormData) {
-  const requestUrl = formData.get('requestUrl') as string
-  const startTime = formData.get('startTime') as string
+interface CreateScreenshotsProps {
+  requestUrl: string
+  startTime: string
+  id: string
+}
 
-  const id = nanoid()
+export async function createScreenshots({
+  requestUrl,
+  startTime,
+  id,
+}: CreateScreenshotsProps) {
   const dir = `screenshots/${id}`
 
   if (!fs.existsSync(dir)) {
